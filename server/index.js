@@ -2,6 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
+const itemsRoutes = require('./routes/items');
 
 const argv = require('./argv');
 const port = require('./port');
@@ -14,8 +15,14 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
-// app.use('/api', myApi);
+// for processing JSON:
+app.use(express.json());
+
+// for processing forms:
+app.use(express.urlencoded({ extended: true }));
+
+// items routes
+app.use('/items', itemsRoutes);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
