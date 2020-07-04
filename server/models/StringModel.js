@@ -1,21 +1,21 @@
-/** Item (string) in array. */
-const items = require('../fakeDb');
+const strings = require('../fakeDb');
 
-class Item {
+/** String model. */
+class StringModel {
   /* getAll: return all strings from fakeDB array
    *   - made async to simulate async behavior of real db
    */
   static async getAll() {
-    return items;
+    return strings;
   }
 
   /* create: prepends a string to fakeDB array
    *   - made async to simulate async behavior of real db
    */
   static async create(string) {
-    items.unshift(string);
+    strings.unshift(string);
     return string;
   }
 }
 
-module.exports = Item;
+module.exports = StringModel;

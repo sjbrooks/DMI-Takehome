@@ -2,7 +2,7 @@
 
 const express = require('express');
 const logger = require('./logger');
-const itemsRoutes = require('./routes/items');
+const stringsRoutes = require('./routes/strings');
 
 const argv = require('./argv');
 const port = require('./port');
@@ -22,7 +22,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // items routes
-app.use('/items', itemsRoutes);
+app.use('/items', stringsRoutes);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

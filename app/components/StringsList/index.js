@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 import List from 'components/List';
 import ListItem from 'components/ListItem';
 import LoadingIndicator from 'components/LoadingIndicator';
-import RepoListItem from 'containers/RepoListItem';
+import StringListItem from 'containers/StringListItem';
 
-function ReposList({ loading, error, repos }) {
+function StringsList({ loading, error, strings }) {
   if (loading) {
     return <List component={LoadingIndicator} />;
   }
@@ -18,17 +18,17 @@ function ReposList({ loading, error, repos }) {
     return <List component={ErrorComponent} />;
   }
 
-  if (repos !== false) {
-    return <List items={repos} component={RepoListItem} />;
+  if (strings !== false) {
+    return <List items={strings} component={StringListItem} />;
   }
 
   return null;
 }
 
-ReposList.propTypes = {
+StringsList.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.any,
-  repos: PropTypes.any,
+  strings: PropTypes.any,
 };
 
-export default ReposList;
+export default StringsList;

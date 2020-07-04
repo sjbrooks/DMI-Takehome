@@ -1,14 +1,14 @@
-/** API routes for posting and viewing items (strings) to the array fakeDb. */
+/** API routes for posting strings to the array fakeDb and viewing all strings. */
 
 const express = require('express');
-const Item = require('../models/Item');
+const StringModel = require('../models/StringModel');
 const { STATUS_CODE_CREATED } = require('../config');
 
 const router = new express.Router();
 
 /** GET /   get all strings
  *
- * Returns: { items:
+ * Returns: { strings:
  *             [ "example string 1",
  *               "example string 2"
  *                              ...]
@@ -17,8 +17,8 @@ const router = new express.Router();
 
 router.get('/', async function getAllItems(req, res, next) {
   try {
-    const items = await Item.getAll();
-    return res.json({ items });
+    const strings = await StringModel.getAll();
+    return res.json({ strings });
   } catch (err) {
     return next(err);
   }
@@ -26,13 +26,13 @@ router.get('/', async function getAllItems(req, res, next) {
 
 /** POST /  add a new string
  *
- * Returns: { item: "example string 1" }
+ * Returns: { string: "example string 1" }
  */
 
 router.post('/', async function createItem(req, res, next) {
   try {
-    const item = await Item.create(req.body.item);
-    return res.status(STATUS_CODE_CREATED).json({ item });
+    const string = await StringModel.create(req.body.string);
+    return res.status(STATUS_CODE_CREATED).json({ string });
   } catch (err) {
     return next(err);
   }
