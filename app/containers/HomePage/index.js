@@ -4,7 +4,7 @@
  * This is the first thing users see of our App, at the '/' route
  */
 
-import React, { memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-import { useInjectReducer } from 'utils/injectReducer';
+// import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import {
   makeSelectStrings,
@@ -21,36 +21,35 @@ import {
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
 import StringsList from 'components/StringsList';
-import AtPrefix from './AtPrefix';
+// import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
-import Form from './Form';
-import Input from './Input';
+// import Form from './Form';
+// import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadStrings } from '../App/actions';
-import { changeString } from './actions';
-// import { makeSelectUsername } from './selectors';
-import reducer from './reducer';
+// import reducer from './reducer';
 import saga from './saga';
 
 const key = 'home';
 
 export function HomePage({
   // username,
-  string,
+  // string,
   loading,
   error,
   strings,
-  onSubmitForm,
-  onChangeString,
+  loadStringsOnPageLoad,
+  // onSubmitForm,
+  // onChangeString,
 }) {
-  useInjectReducer({ key, reducer });
+  // useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  // useEffect(() => {
-  //   // When initial state username is not null, submit the form to load repos
-  //   if (username && username.trim().length > 0) onSubmitForm();
-  // }, []);
+  useEffect(() => {
+    // load strings upon homepage mount
+    loadStringsOnPageLoad();
+  }, []);
 
   const stringListProps = {
     loading,
@@ -62,25 +61,22 @@ export function HomePage({
     <article>
       <Helmet>
         <title>Home Page</title>
-        <meta
-          name="description"
-          content="String store homepage"
-        />
+        <meta name="description" content="String store homepage" />
       </Helmet>
       <div>
         <CenteredSection>
           <H2>
-            <FormattedMessage {...messages.startProjectHeader} />
+            <FormattedMessage {...messages.stringStoreHeader} />
           </H2>
           <p>
-            <FormattedMessage {...messages.startProjectMessage} />
+            <FormattedMessage {...messages.stringStoreMessage} />
           </p>
         </CenteredSection>
         <Section>
           <H2>
-            <FormattedMessage {...messages.trymeHeader} />
+            <FormattedMessage {...messages.stringsInStockHeader} />
           </H2>
-          <Form onSubmit={onSubmitForm}>
+          {/* <Form onSubmit={onSubmitForm}>
             <label htmlFor="username">
               <FormattedMessage {...messages.trymeMessage} />
               <AtPrefix>
@@ -94,7 +90,7 @@ export function HomePage({
                 onChange={onChangeString}
               />
             </label>
-          </Form>
+          </Form> */}
           <StringsList {...stringListProps} />
         </Section>
       </div>
@@ -110,6 +106,7 @@ HomePage.propTypes = {
   onSubmitForm: PropTypes.func,
   // username: PropTypes.string,
   onChangeString: PropTypes.func,
+  loadStringsOnPageLoad: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
@@ -121,12 +118,15 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   return {
-    onChangeString: evt => dispatch(changeString(evt.target.value)),
-    onSubmitForm: evt => {
-      if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-      dispatch(loadStrings());
-    },
+    loadStringsOnPageLoad: () => dispatch(loadStrings()),
   };
+  // return {
+  //   onChangeString: evt => dispatch(changeString(evt.target.value)),
+  //   onSubmitForm: evt => {
+  //     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
+  //     dispatch(loadStrings());
+  //   },
+  // };
 }
 
 const withConnect = connect(

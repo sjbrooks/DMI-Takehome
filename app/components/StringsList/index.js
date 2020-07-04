@@ -19,7 +19,7 @@ function StringsList({ loading, error, strings }) {
   }
 
   if (strings !== false) {
-    return <List items={strings} component={StringListItem} />;
+    return <List items={strings.strings} component={StringListItem} />;
   }
 
   return null;

@@ -18,8 +18,7 @@ import ListItem from '../../components/ListItem';
 import Wrapper from './Wrapper';
 
 export function StringListItem(props) {
-  const { string } = props;
-  // let nameprefix = '';
+  const { item } = props;
 
   // // If the repository is owned by a different person than we got the data for
   // // it's a fork and we should show the name of the owner
@@ -30,23 +29,17 @@ export function StringListItem(props) {
   // Put together the content of the array of strings
   const content = (
     <Wrapper>
-      {string}
-      {/* <RepoLink href={item.html_url} target="_blank">
-        {nameprefix + item.name}
-      </RepoLink>
-      <IssueLink href={`${item.html_url}/issues`} target="_blank">
-        <IssueIcon />
-        <FormattedNumber value={item.open_issues_count} />
-      </IssueLink> */}
+      {createImageBitmap}
+      {item}
     </Wrapper>
   );
 
   // Render the content into a list item
-  return <ListItem key={`string-list-item-${string}`} item={content} />;
+  return <ListItem key={`string-list-item-${item}`} item={content} />;
 }
 
 StringListItem.propTypes = {
-  string: PropTypes.string,
+  item: PropTypes.string,
   // currentUser: PropTypes.string,
 };
 

@@ -30,7 +30,7 @@ const makeSelectError = () =>
 const makeSelectStrings = () =>
   createSelector(
     selectGlobal,
-    globalState => globalState.stringData.strings,
+    globalState => globalState.data.strings,
   );
 
 const makeSelectLocation = () =>

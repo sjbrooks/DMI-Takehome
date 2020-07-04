@@ -5,28 +5,20 @@
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.containers.HomePage';
+export const scope = 'DMI-Takehome.containers.HomePage';
 
 export default defineMessages({
-  startProjectHeader: {
-    id: `${scope}.start_project.header`,
-    defaultMessage: 'Start your next react project in seconds',
+  stringStoreHeader: {
+    id: `${scope}.string_store.header`,
+    defaultMessage: 'String Store: Get all the strings here!',
   },
-  startProjectMessage: {
-    id: `${scope}.start_project.message`,
+  stringStoreMessage: {
+    id: `${scope}.string_store.message`,
     defaultMessage:
-      'A highly scalable, offline-first foundation with the best DX and a focus on performance and best practices',
+      'View all the strings in our store, from most recently added to least recently added',
   },
-  trymeHeader: {
-    id: `${scope}.tryme.header`,
-    defaultMessage: 'Try me!',
-  },
-  trymeMessage: {
-    id: `${scope}.tryme.message`,
-    defaultMessage: 'Show Github repositories by',
-  },
-  trymeAtPrefix: {
-    id: `${scope}.tryme.atPrefix`,
-    defaultMessage: '@',
+  stringsInStockHeader: {
+    id: `${scope}.stringsinstock.header`,
+    defaultMessage: 'Strings currently in stock',
   },
 });

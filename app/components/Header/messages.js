@@ -5,15 +5,15 @@
  */
 import { defineMessages } from 'react-intl';
 
-export const scope = 'boilerplate.components.Header';
+export const scope = 'DMI-Takehome.components.Header';
 
 export default defineMessages({
   home: {
     id: `${scope}.home`,
-    defaultMessage: 'Home',
+    defaultMessage: 'Home: All Strings',
   },
-  features: {
-    id: `${scope}.features`,
-    defaultMessage: 'Features',
+  addString: {
+    id: `${scope}.addString`,
+    defaultMessage: 'Add a String',
   },
 });

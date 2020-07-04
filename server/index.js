@@ -21,8 +21,8 @@ app.use(express.json());
 // for processing forms:
 app.use(express.urlencoded({ extended: true }));
 
-// items routes
-app.use('/items', stringsRoutes);
+// strings routes
+app.use('/strings', stringsRoutes);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {

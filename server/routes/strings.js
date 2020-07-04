@@ -15,7 +15,7 @@ const router = new express.Router();
  *          }
  */
 
-router.get('/', async function getAllItems(req, res, next) {
+router.get('/', async function getAllStrings(req, res, next) {
   try {
     const strings = await StringModel.getAll();
     return res.json({ strings });
@@ -29,7 +29,7 @@ router.get('/', async function getAllItems(req, res, next) {
  * Returns: { string: "example string 1" }
  */
 
-router.post('/', async function createItem(req, res, next) {
+router.post('/', async function createString(req, res, next) {
   try {
     const string = await StringModel.create(req.body.string);
     return res.status(STATUS_CODE_CREATED).json({ string });

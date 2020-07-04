@@ -8,14 +8,18 @@
  */
 
 import produce from 'immer';
-import { LOAD_STRINGS_SUCCESS, LOAD_STRINGS, LOAD_STRINGS_ERROR } from './constants';
+import {
+  LOAD_STRINGS_SUCCESS,
+  LOAD_STRINGS,
+  LOAD_STRINGS_ERROR,
+} from './constants';
 
 // The initial state of the App
 export const initialState = {
   loading: false,
   error: false,
   // currentUser: false,
-  stringData: {
+  data: {
     strings: [],
   },
 };
@@ -27,11 +31,11 @@ const appReducer = (state = initialState, action) =>
       case LOAD_STRINGS:
         draft.loading = true;
         draft.error = false;
-        draft.stringData.strings = false;
+        draft.data.strings = false;
         break;
 
       case LOAD_STRINGS_SUCCESS:
-        draft.stringData.strings = action.strings;
+        draft.data.strings = action.strings;
         draft.loading = false;
         // draft.currentUser = action.username;
         break;

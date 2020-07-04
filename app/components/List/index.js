@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { v4 as uuid } from 'uuid';
 
 import Ul from './Ul';
 import Wrapper from './Wrapper';
@@ -11,7 +12,7 @@ function List(props) {
   // If we have items, render them
   if (props.items) {
     content = props.items.map(item => (
-      <ComponentToRender key={`item-${item.id}`} item={item} />
+      <ComponentToRender key={`item-${uuid()}`} item={item} />
     ));
   } else {
     // Otherwise render a single component
