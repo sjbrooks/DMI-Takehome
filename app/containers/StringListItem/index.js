@@ -13,12 +13,7 @@ export function StringListItem(props) {
   const { item } = props;
 
   // Put together the content of the array of strings
-  const content = (
-    <Wrapper>
-      {createImageBitmap}
-      {item}
-    </Wrapper>
-  );
+  const content = <Wrapper>{item}</Wrapper>;
 
   // Render the content into a list item
   return <ListItem key={`string-list-item-${item}`} item={content} />;
