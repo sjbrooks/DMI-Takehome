@@ -18,7 +18,6 @@ import {
 export const initialState = {
   loading: false,
   error: false,
-  // string: '',
   data: {
     strings: [],
   },
