@@ -16,7 +16,7 @@ export function* getStrings() {
 
   try {
     // Call our request helper (see 'utils/request')
-    const strings = yield call(request, requestURL);
+    const { strings } = yield call(request, requestURL);
     yield put(stringsLoaded(strings));
   } catch (err) {
     yield put(stringLoadingError(err));

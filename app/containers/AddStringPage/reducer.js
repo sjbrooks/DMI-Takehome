@@ -10,7 +10,7 @@
 import produce from 'immer';
 import { CHANGE_STRING } from './constants';
 
-// The initial state of the App
+// The initial state of the AddStringPage
 export const initialState = {
   string: '',
 };

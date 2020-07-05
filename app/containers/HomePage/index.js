@@ -24,13 +24,11 @@ import CenteredSection from './CenteredSection';
 import Section from './Section';
 import messages from './messages';
 import { loadStrings } from '../App/actions';
-// import reducer from './reducer';
 import saga from './saga';
 
 const key = 'home';
 
 export function HomePage({ loading, error, strings, loadStringsOnPageLoad }) {
-  // useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
@@ -73,7 +71,7 @@ export function HomePage({ loading, error, strings, loadStringsOnPageLoad }) {
 HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  strings: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
+  strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
   onChangeString: PropTypes.func,
   loadStringsOnPageLoad: PropTypes.any,
