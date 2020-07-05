@@ -18,7 +18,7 @@ import {
 export const initialState = {
   loading: false,
   error: false,
-  // currentUser: false,
+  string: '',
   data: {
     strings: [],
   },
@@ -37,7 +37,6 @@ const appReducer = (state = initialState, action) =>
       case LOAD_STRINGS_SUCCESS:
         draft.data.strings = action.strings;
         draft.loading = false;
-        // draft.currentUser = action.username;
         break;
 
       case LOAD_STRINGS_ERROR:

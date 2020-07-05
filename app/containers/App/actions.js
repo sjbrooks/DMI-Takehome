@@ -22,7 +22,7 @@ import {
 } from './constants';
 
 /**
- * Load the repositories, this action starts the request saga
+ * Load the strings, this action starts the request saga
  *
  * @return {object} An action object with a type of LOAD_STRINGS
  */
@@ -33,10 +33,9 @@ export function loadStrings() {
 }
 
 /**
- * Dispatched when the repositories are loaded by the request saga
+ * Dispatched when the strings are loaded by the request saga
  *
- * @param  {array} repos The repository data
- * @param  {string} username The current username
+ * @param  {array} strings The string data
  *
  * @return {object}      An action object with a type of LOAD_STRINGS_SUCCESS passing the repos
  */
@@ -48,7 +47,7 @@ export function stringsLoaded(strings) {
 }
 
 /**
- * Dispatched when loading the repositories fails
+ * Dispatched when loading the strings fails
  *
  * @param  {object} error The error
  *

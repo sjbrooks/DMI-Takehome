@@ -12,7 +12,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 import { createStructuredSelector } from 'reselect';
 
-// import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 import {
   makeSelectStrings,
@@ -21,10 +20,7 @@ import {
 } from 'containers/App/selectors';
 import H2 from 'components/H2';
 import StringsList from 'components/StringsList';
-// import AtPrefix from './AtPrefix';
 import CenteredSection from './CenteredSection';
-// import Form from './Form';
-// import Input from './Input';
 import Section from './Section';
 import messages from './messages';
 import { loadStrings } from '../App/actions';
@@ -33,21 +29,12 @@ import saga from './saga';
 
 const key = 'home';
 
-export function HomePage({
-  // username,
-  // string,
-  loading,
-  error,
-  strings,
-  loadStringsOnPageLoad,
-  // onSubmitForm,
-  // onChangeString,
-}) {
+export function HomePage({ loading, error, strings, loadStringsOnPageLoad }) {
   // useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
   useEffect(() => {
-    // load strings upon homepage mount
+    // load strings upon HomePage mount
     loadStringsOnPageLoad();
   }, []);
 
@@ -76,21 +63,6 @@ export function HomePage({
           <H2>
             <FormattedMessage {...messages.stringsInStockHeader} />
           </H2>
-          {/* <Form onSubmit={onSubmitForm}>
-            <label htmlFor="username">
-              <FormattedMessage {...messages.trymeMessage} />
-              <AtPrefix>
-                <FormattedMessage {...messages.trymeAtPrefix} />
-              </AtPrefix>
-              <Input
-                id="string"
-                type="text"
-                placeholder="mxstbr"
-                value={string}
-                onChange={onChangeString}
-              />
-            </label>
-          </Form> */}
           <StringsList {...stringListProps} />
         </Section>
       </div>
@@ -101,17 +73,14 @@ export function HomePage({
 HomePage.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
-  strings: PropTypes.oneOfType([PropTypes.array, PropTypes.bool]),
-  string: PropTypes.string,
+  strings: PropTypes.oneOfType([PropTypes.object, PropTypes.bool]),
   onSubmitForm: PropTypes.func,
-  // username: PropTypes.string,
   onChangeString: PropTypes.func,
   loadStringsOnPageLoad: PropTypes.any,
 };
 
 const mapStateToProps = createStructuredSelector({
   strings: makeSelectStrings(),
-  // username: makeSelectUsername(),
   loading: makeSelectLoading(),
   error: makeSelectError(),
 });
@@ -120,13 +89,6 @@ export function mapDispatchToProps(dispatch) {
   return {
     loadStringsOnPageLoad: () => dispatch(loadStrings()),
   };
-  // return {
-  //   onChangeString: evt => dispatch(changeString(evt.target.value)),
-  //   onSubmitForm: evt => {
-  //     if (evt !== undefined && evt.preventDefault) evt.preventDefault();
-  //     dispatch(loadStrings());
-  //   },
-  // };
 }
 
 const withConnect = connect(

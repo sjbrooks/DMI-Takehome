@@ -1,5 +1,5 @@
 /*
- * Home Actions
+ * Add String Actions
  *
  * Actions change things in your application
  * Since this boilerplate uses a uni-directional data flow, specifically redux,
@@ -15,18 +15,64 @@
  *    }
  */
 
-import { CHANGE_STRING } from './constants';
+import {
+  CHANGE_STRING,
+  CREATE_STRING,
+  CREATE_STRING_SUCCESS,
+  CREATE_STRING_ERROR,
+} from './constants';
 
 /**
  * Changes the input field of the form
  *
  * @param  {string} string The new text of the input field
  *
- * @return {object} An action object with a type of CHANGE_USERNAME
+ * @return {object} An action object with a type of CHANGE_STRING
  */
 export function changeString(string) {
   return {
     type: CHANGE_STRING,
     string,
+  };
+}
+
+/**
+ * Create a new string, this action starts the request saga
+ *
+ * @return {object} An action object with a type of CREATE_STRING
+ */
+export function createString(string) {
+  return {
+    type: CREATE_STRING,
+    string,
+  };
+}
+
+/**
+ * Dispatched when the string has been created by the request saga
+ *
+ * @param  {array} repos The repository data
+ * @param  {string} username The current username
+ *
+ * @return {object}      An action object with a type of LOAD_STRINGS_SUCCESS passing the repos
+ */
+export function stringCreated(string) {
+  return {
+    type: CREATE_STRING_SUCCESS,
+    string,
+  };
+}
+
+/**
+ * Dispatched when loading the repositories fails
+ *
+ * @param  {object} error The error
+ *
+ * @return {object}       An action object with a type of LOAD_STRINGS_ERROR passing the error
+ */
+export function stringCreationError(error) {
+  return {
+    type: CREATE_STRING_ERROR,
+    error,
   };
 }

@@ -1,16 +1,16 @@
 /**
- * Homepage selectors
+ * AddStringPage selectors
  */
 
 import { createSelector } from 'reselect';
 import { initialState } from './reducer';
 
-const selectHome = state => state.home || initialState;
+const selectAddStringPage = state => state.addString || initialState;
 
-const makeSelectUsername = () =>
+const makeSelectString = () =>
   createSelector(
-    selectHome,
-    homeState => homeState.username,
+    selectAddStringPage,
+    addStringState => addStringState.string,
   );
 
-export { selectHome, makeSelectUsername };
+export { selectAddStringPage, makeSelectString };

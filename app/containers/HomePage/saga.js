@@ -1,5 +1,5 @@
 /**
- * Gets the repositories of the user from Github
+ * Gets all the strings from fakeDB
  */
 
 import { call, put, takeLatest } from 'redux-saga/effects';
@@ -7,16 +7,12 @@ import { LOAD_STRINGS } from 'containers/App/constants';
 import { stringsLoaded, stringLoadingError } from 'containers/App/actions';
 
 import request from 'utils/request';
-// import { makeSelectUsername } from 'containers/HomePage/selectors';
 
 /**
- * Strings request/response handler
+ * Get all strings request/response handler
  */
 export function* getStrings() {
-  // // Select username from store
-  // const username = yield select(makeSelectUsername());
-  // const requestURL = `https://api.github.com/users/${username}/repos?type=all&sort=updated`;
-  const requestURL = `http://localhost:3001/strings`;
+  const requestURL = `http://localhost:3000/strings`;
 
   try {
     // Call our request helper (see 'utils/request')

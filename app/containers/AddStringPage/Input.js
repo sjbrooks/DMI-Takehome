@@ -5,6 +5,8 @@ const Input = styled.input`
   border: none;
   border-bottom: 1px dotted #999;
   background-color: transparent;
+  position: relative;
+  left: 1rem;
 `;
 
 export default Input;
