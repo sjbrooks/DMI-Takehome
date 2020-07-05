@@ -10,7 +10,7 @@ const selectAddStringPage = state => state.addString || initialState;
 const makeSelectString = () =>
   createSelector(
     selectAddStringPage,
-    addStringState => addStringState.string,
+    addStringState => addStringState.data.string,
   );
 
 export { selectAddStringPage, makeSelectString };
