@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 const Form = styled.form`
-  margin-bottom: 1em;
+  margin: 2rem 0;
 `;
 
 export default Form;

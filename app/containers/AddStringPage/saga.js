@@ -28,9 +28,12 @@ export function* createString() {
   };
 
   try {
-    // Call our request helper (see 'utils/request')
-    string = yield call(request, requestURL, options);
-    yield put(stringCreated(string));
+    // Prevent empty form from being submitted
+    if (string !== '') {
+      // Call our request helper (see 'utils/request')
+      string = yield call(request, requestURL, options);
+      yield put(stringCreated(string));
+    }
   } catch (err) {
     yield put(stringCreationError(err));
   }

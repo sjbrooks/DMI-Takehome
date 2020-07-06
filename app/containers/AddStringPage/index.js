@@ -5,7 +5,6 @@
  */
 
 import React, { memo } from 'react';
-import { Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -16,8 +15,7 @@ import { useInjectReducer } from 'utils/injectReducer';
 import { useInjectSaga } from 'utils/injectSaga';
 
 import H1 from 'components/H1';
-import LoadingIndicator from 'components/LoadingIndicator';
-import List from 'components/List';
+import Alert from 'components/Alert';
 import Form from './Form';
 import Input from './Input';
 
@@ -45,13 +43,11 @@ export function AddStringPage({
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
-  const errorAlert = error ? (
-    <Alert variant="danger">Something went wrong. Please try again.</Alert>
-  ) : null;
-  const createdAlert = created ? (
-    <Alert variant="success">Successfully added.</Alert>
-  ) : null;
-  const loadingSpinner = loading ? <List component={LoadingIndicator} /> : null;
+  const alertProps = {
+    loading,
+    error,
+    created,
+  };
 
   return (
     <div>
@@ -65,9 +61,7 @@ export function AddStringPage({
       <H1>
         <FormattedMessage {...messages.header} />
       </H1>
-      {errorAlert}
-      {createdAlert}
-      {loadingSpinner}
+      <Alert {...alertProps} />
       <Form onSubmit={onSubmitForm}>
         <label htmlFor="username">
           <FormattedMessage {...messages.instructions} />
