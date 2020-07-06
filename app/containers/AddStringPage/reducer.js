@@ -31,6 +31,7 @@ const addStringReducer = (state = initialState, action) =>
     switch (action.type) {
       case CHANGE_STRING:
         draft.data.string = action.string;
+        draft.error = false;
         draft.created = false;
         break;
 

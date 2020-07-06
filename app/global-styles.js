@@ -8,12 +8,10 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
   }
 
-  body {
+  body,
+  p,
+  label {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  }
-
-  body.fontLoaded {
-    font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   }
 
   #app {
@@ -24,7 +22,6 @@ const GlobalStyle = createGlobalStyle`
 
   p,
   label {
-    font-family: Arial, sans-serif;
     line-height: 1.5em;
   }
 `;

@@ -5,6 +5,7 @@
  */
 
 import React, { useEffect, memo } from 'react';
+import { Alert } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 import { FormattedMessage } from 'react-intl';
@@ -42,6 +43,10 @@ export function HomePage({ loading, error, strings, loadStringsOnPageLoad }) {
     strings,
   };
 
+  const errorAlert = error ? (
+    <Alert variant="danger">Something went wrong. Please try again.</Alert>
+  ) : null;
+
   return (
     <article>
       <Helmet>
@@ -61,6 +66,7 @@ export function HomePage({ loading, error, strings, loadStringsOnPageLoad }) {
           <H2>
             <FormattedMessage {...messages.stringsInStockHeader} />
           </H2>
+          {errorAlert}
           <StringsList {...stringListProps} />
         </Section>
       </div>

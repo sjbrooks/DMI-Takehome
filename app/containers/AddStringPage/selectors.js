@@ -13,4 +13,28 @@ const makeSelectString = () =>
     addStringState => addStringState.data.string,
   );
 
-export { selectAddStringPage, makeSelectString };
+const makeSelectLoading = () =>
+  createSelector(
+    selectAddStringPage,
+    addStringState => addStringState.loading,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectAddStringPage,
+    addStringState => addStringState.error,
+  );
+
+const makeSelectCreated = () =>
+  createSelector(
+    selectAddStringPage,
+    addStringState => addStringState.created,
+  );
+
+export {
+  selectAddStringPage,
+  makeSelectString,
+  makeSelectLoading,
+  makeSelectError,
+  makeSelectCreated,
+};
