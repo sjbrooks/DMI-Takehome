@@ -33,6 +33,11 @@ export function* createString() {
       // Call our request helper (see 'utils/request')
       string = yield call(request, requestURL, options);
       yield put(stringCreated(string));
+    } else {
+      const err = new Error(
+        'Invalid input: String must be at least one character',
+      );
+      throw err;
     }
   } catch (err) {
     yield put(stringCreationError(err));
@@ -40,9 +45,9 @@ export function* createString() {
 }
 
 /**
- * AddStringPage sagas manage watcher lifecycle
+ * AddStringPage saga manages watcher lifecycle
  */
-export default function* stringNew() {
+export default function* newString() {
   // Watches for CREATE_STRING actions and calls createString when one comes in.
   // By using `takeLatest` only the result of the latest API call is applied.
   // It returns task descriptor (just like fork) so we can continue execution
