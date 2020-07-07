@@ -33,11 +33,6 @@ export function* createString() {
       // Call our request helper (see 'utils/request')
       string = yield call(request, requestURL, options);
       yield put(stringCreated(string));
-    } else {
-      const err = new Error(
-        'Invalid input: String must be at least one character',
-      );
-      throw err;
     }
   } catch (err) {
     yield put(stringCreationError(err));

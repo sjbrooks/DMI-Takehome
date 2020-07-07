@@ -37,16 +37,6 @@ describe('createString Saga', () => {
     expect(putDescriptor).toEqual(put(stringCreated(string)));
   });
 
-  it('should call the stringCreationError action if string is empty', () => {
-    const emptyString = '';
-
-    const response = new Error(
-      'Invalid input: String must be at least one character',
-    );
-    const putDescriptor = createStringGenerator.next(emptyString).value;
-    expect(putDescriptor).toEqual(put(stringCreationError(response)));
-  });
-
   it('should call the stringCreationError action if the response errors', () => {
     const response = new Error('Some error');
     const putDescriptor = createStringGenerator.throw(response).value;

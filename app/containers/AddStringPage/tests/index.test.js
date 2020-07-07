@@ -9,13 +9,7 @@ import { Provider } from 'react-redux';
 import { browserHistory } from 'react-router-dom';
 
 import { AddStringPage, mapDispatchToProps } from '../index';
-import {
-  changeString,
-  createString,
-  stringCreated,
-  stringCreationError,
-} from '../actions';
-// import { loadRepos } from '../../App/actions';
+import { changeString, createString } from '../actions';
 import configureStore from '../../../configureStore';
 
 describe('<AddStringPage />', () => {
@@ -50,7 +44,7 @@ describe('<AddStringPage />', () => {
         <IntlProvider locale="en">
           <AddStringPage
             string="Not Empty"
-            onchangeString={() => {}}
+            onChangeString={() => {}}
             onSubmitForm={submitSpy}
           />
         </IntlProvider>
@@ -62,95 +56,45 @@ describe('<AddStringPage />', () => {
     expect(submitSpy).toHaveBeenCalled();
   });
 
-  // NOTE: Although the onSubmit function will still be called in case of empty input,
-  // the logic inside the saga prevents the creation of an empty string.
-  // See saga.test.js for where we test an empty string.
+  describe('mapDispatchToProps', () => {
+    describe('onChangeString', () => {
+      it('should be injected', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onChangeString).toBeDefined();
+      });
 
-  // it('should not create string if input form is submitted while empty', () => {
-  //   const submitSpy = jest.fn();
-  //   const { container } = render(
-  //     <Provider store={store}>
-  //       <IntlProvider locale="en">
-  //         <AddStringPage
-  //           string=""
-  //           onchangeString={() => {}}
-  //           onSubmitForm={submitSpy}
-  //         />
-  //       </IntlProvider>
-  //     </Provider>,
-  //   );
+      it('should dispatch changeString when called', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        const string = 'mxstbr';
+        result.onChangeString({ target: { value: string } });
+        expect(dispatch).toHaveBeenCalledWith(changeString(string));
+      });
+    });
 
-  //   const input = container.querySelector('input');
-  //   fireEvent.submit(input);
-  //   expect(submitSpy).not.toHaveBeenCalled();
-  // });
+    describe('onSubmitForm', () => {
+      it('should be injected', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        expect(result.onSubmitForm).toBeDefined();
+      });
 
-  //   it('should not call onSubmitForm if string is an empty string', () => {
-  //     const submitSpy = jest.fn();
-  //     render(
-  //       <Provider store={store}>
-  //         <IntlProvider locale="en">
-  //           <AddStringPage onchangeString={() => {}} onSubmitForm={submitSpy} />
-  //         </IntlProvider>
-  //       </Provider>,
-  //     );
-  //     expect(submitSpy).not.toHaveBeenCalled();
-  //   });
+      it('should dispatch createString and changeString when called', () => {
+        const dispatch = jest.fn();
+        const result = mapDispatchToProps(dispatch);
+        result.onSubmitForm();
+        expect(dispatch).toHaveBeenCalledWith(createString());
+        expect(dispatch).toHaveBeenCalledWith(changeString(''));
+      });
 
-  //   it('should not call onSubmitForm if string is null', () => {
-  //     const submitSpy = jest.fn();
-  //     render(
-  //       <Provider store={store}>
-  //         <IntlProvider locale="en">
-  //           <AddStringPage
-  //             string=""
-  //             onchangeString={() => {}}
-  //             onSubmitForm={submitSpy}
-  //           />
-  //         </IntlProvider>
-  //       </Provider>,
-  //     );
-  //     expect(submitSpy).not.toHaveBeenCalled();
-  //   });
-
-  //   describe('mapDispatchToProps', () => {
-  //     describe('onchangeString', () => {
-  //       it('should be injected', () => {
-  //         const dispatch = jest.fn();
-  //         const result = mapDispatchToProps(dispatch);
-  //         expect(result.onchangeString).toBeDefined();
-  //       });
-
-  //       it('should dispatch changeString when called', () => {
-  //         const dispatch = jest.fn();
-  //         const result = mapDispatchToProps(dispatch);
-  //         const string = 'mxstbr';
-  //         result.onchangeString({ target: { value: string } });
-  //         expect(dispatch).toHaveBeenCalledWith(changeString(string));
-  //       });
-  //     });
-
-  //     describe('onSubmitForm', () => {
-  //       it('should be injected', () => {
-  //         const dispatch = jest.fn();
-  //         const result = mapDispatchToProps(dispatch);
-  //         expect(result.onSubmitForm).toBeDefined();
-  //       });
-
-  //       it('should dispatch loadRepos when called', () => {
-  //         const dispatch = jest.fn();
-  //         const result = mapDispatchToProps(dispatch);
-  //         result.onSubmitForm();
-  //         expect(dispatch).toHaveBeenCalledWith(loadRepos());
-  //       });
-
-  //       it('should preventDefault if called with event', () => {
-  //         const preventDefault = jest.fn();
-  //         const result = mapDispatchToProps(() => {});
-  //         const evt = { preventDefault };
-  //         result.onSubmitForm(evt);
-  //         expect(preventDefault).toHaveBeenCalledWith();
-  //       });
-  //     });
-  //   });
+      it('should preventDefault if called with event', () => {
+        const preventDefault = jest.fn();
+        const result = mapDispatchToProps(() => {});
+        const evt = { preventDefault };
+        result.onSubmitForm(evt);
+        expect(preventDefault).toHaveBeenCalledWith();
+      });
+    });
+  });
 });
