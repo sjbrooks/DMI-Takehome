@@ -24,7 +24,7 @@ export function* getStrings() {
 }
 
 /**
- * Root saga manages watcher lifecycle
+ * HomePage saga manages watcher lifecycle
  */
 export default function* stringData() {
   // Watches for LOAD_STRINGS actions and calls getStrings when one comes in.

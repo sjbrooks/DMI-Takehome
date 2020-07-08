@@ -40,7 +40,7 @@ const addStringReducer = (state = initialState, action) =>
         break;
 
       case CREATE_STRING:
-        draft.loading = false;
+        draft.loading = true;
         draft.error = false;
         draft.created = false;
         break;
