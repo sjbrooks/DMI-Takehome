@@ -18,8 +18,8 @@ function Alert({ loading, error, created }) {
   }
 
   if (created === true) {
-    const ErrorComponent = () => <ListItem item="Successfully created." />;
-    return <List component={ErrorComponent} />;
+    const CreatedComponent = () => <ListItem item="Successfully created." />;
+    return <List component={CreatedComponent} />;
   }
 
   return null;

@@ -43,6 +43,8 @@ export function AddStringPage({
   useInjectReducer({ key, reducer });
   useInjectSaga({ key, saga });
 
+  /* Show loading spinner if loading, error alert if there was an error,
+  and an alert notifying the user that their string was successfully added. */
   const alertProps = {
     loading,
     error,

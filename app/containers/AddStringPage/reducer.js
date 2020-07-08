@@ -16,6 +16,7 @@ import {
 } from './constants';
 
 // The initial state of the AddStringPage
+// (created state allows us to provide validation of successful submission)
 export const initialState = {
   loading: false,
   error: false,
@@ -24,6 +25,9 @@ export const initialState = {
   },
   created: false,
 };
+
+/* As soon as change string is dispatched, error and
+created state gets reset to remove any lingering Alerts */
 
 /* eslint-disable default-case, no-param-reassign */
 const addStringReducer = (state = initialState, action) =>

@@ -3,7 +3,8 @@
  * App
  *
  * This component is the skeleton around the actual pages, and should only
- * contain code that should be seen on all pages. (e.g. navigation bar)
+ * contain code that should be seen on all pages.
+ * (e.g. navigation bar contained in Header component)
  */
 
 import React from 'react';
